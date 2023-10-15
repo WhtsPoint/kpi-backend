@@ -14,7 +14,7 @@ class HealthController extends AbstractController
     ) {}
 
     #[Route('/api/healthcheck', methods: 'GET')]
-    public function health(): JsonResponse
+    public function check(): JsonResponse
     {
         $data = $this->service->check();
 

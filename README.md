@@ -8,7 +8,7 @@ https://kpi-backend-634p.onrender.com/
 
 ## Installation
 
-###Run dev server:
+### Run dev server:
 - Install Symfony CLI:
 ```shell 
 curl -sS https://get.symfony.com/cli/installer | bash
@@ -18,16 +18,16 @@ curl -sS https://get.symfony.com/cli/installer | bash
 symfony server:start
 ```
 
-###Build
+### Build
 - Build app with docker:
 ```shell
 docker-compose up
 ```
 Server will be able on :80 port
 
-##API
-###Lab 1
+## API
+### Lab 1
 ```
 /api/healthcheck
 ```
-Returs you current date in d.m.Y H:i format and service status
+Returns you current date in d.m.Y H:i format and service status

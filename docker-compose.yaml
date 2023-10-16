@@ -2,6 +2,8 @@ services:
   nginx:
     build: ./.nginx
     restart: always
+    profiles:
+      - prod
     environment:
       - APP_ENV=prod
     volumes:
@@ -13,8 +15,35 @@ services:
   php:
     build: .
     restart: always
+    profiles:
+      - prod
     environment:
       - APP_ENV=prod
+    networks:
+      - app
+  mysql:
+    image: mysql
+    restart: always
+    profiles:
+      - prod
+      - dev
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./.mysql/data:/var/lib/mysql
+    networks:
+      - app
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    profiles:
+      - dev
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mysql
     networks:
       - app
 networks:

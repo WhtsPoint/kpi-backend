@@ -1,13 +1,18 @@
 <?php
 
-namespace App\EventListener;
+namespace App\Util\EventListener;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class ExceptionListener
 {
+    public function __construct(
+        protected LoggerInterface $logger
+    ) {}
+
     public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
@@ -18,6 +23,7 @@ class ExceptionListener
             $response->setStatusCode($exception->getStatusCode());
             $response->headers->replace($exception->getHeaders());
         } else {
+            $this->logger->error($exception);
             $error = 'Internal error';
             $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
         }

@@ -21,7 +21,7 @@ symfony server:start
 ### Build
 - Build app with docker:
 ```shell
-docker-compose up
+docker-compose up --profile prod
 ```
 Server will be able on :80 port
 

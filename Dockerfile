@@ -22,4 +22,4 @@ WORKDIR /var/www/app
 
 RUN composer i --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader
 
-CMD ["php-fpm"]
+CMD ["/start.sh"]

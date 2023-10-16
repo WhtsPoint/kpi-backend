@@ -4,7 +4,7 @@
 
 ### Deployment
 
-https://kpi-backend-634p.onrender.com/
+http://185.229.224.230
 
 ## Installation
 

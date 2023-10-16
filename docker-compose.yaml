@@ -1,0 +1,16 @@
+services:
+  nginx:
+    build: ./.nginx
+    volumes:
+      - .:/var/www/app
+    ports:
+      - 80:80
+    networks:
+      - app
+  php:
+    build: .
+    networks:
+      - app
+networks:
+  app:
+    driver: bridge

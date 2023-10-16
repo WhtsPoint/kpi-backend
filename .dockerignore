@@ -1,0 +1,6 @@
+.nginx
+var
+vendor
+composer.lock
+docker-compose.yaml
+.gitignore

@@ -30,4 +30,4 @@ Server will be able on :80 port
 ```
 /api/healthcheck
 ```
-Returns you current date in d.m.Y H:i format and service status
+Returns server current date in d.m.Y H:i format and service status

@@ -21,5 +21,3 @@ COPY --chown=www-data:www-data ./ /var/www/app
 WORKDIR /var/www/app
 
 RUN composer i --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader
-
-CMD ["/start.sh"]

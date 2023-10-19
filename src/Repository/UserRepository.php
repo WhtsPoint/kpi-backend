@@ -21,8 +21,6 @@ class UserRepository implements UserRepositoryInterface
 
     public function create(User $user): void
     {
-
-
         $this->entityManager->persist($user);
     }
 
@@ -36,8 +34,7 @@ class UserRepository implements UserRepositoryInterface
         $query = $this->entityManager->createQuery(
             'DELETE FROM App\Entity\User u WHERE u.id = :id'
         );
-        $query->setParameter('id', $id);
-        $query->getResult();
+        $query->execute(['id' => $id]);
     }
 
     /**

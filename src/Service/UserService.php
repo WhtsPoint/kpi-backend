@@ -28,25 +28,4 @@ class UserService implements UserServiceInterface
 
         return new UserCreationResultDto($user->getId());
     }
-
-    /**
-     * @throws UserNotFoundException
-     */
-    public function delete(string $id): void
-    {
-        $this->repository->delete($id);
-    }
-
-    /**
-     * @throws UserNotFoundException
-     */
-    public function getById(string $id): User
-    {
-        return $this->repository->getById($id);
-    }
-
-    public function getAll(): array
-    {
-        return $this->repository->getAll();
-    }
 }

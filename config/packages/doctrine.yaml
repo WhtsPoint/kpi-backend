@@ -14,7 +14,7 @@ doctrine:
         mappings:
             App:
                 is_bundle: false
-                dir: '%kernel.project_dir%/mapping'
+                dir: '%kernel.project_dir%/mapping/orm'
                 type: xml
                 prefix: 'App\Entity'
 

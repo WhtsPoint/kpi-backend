@@ -12,6 +12,6 @@ class HealthService implements HealthServiceInterface
     {
         $date = (new DateTimeImmutable())->format('d.m.Y H:i');
 
-        return new HealthcheckDto($date, 'alive');
+        return new HealthcheckDto($date, 'alive🙏🏻');
     }
 }

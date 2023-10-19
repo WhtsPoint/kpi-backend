@@ -23,9 +23,7 @@
         "symfony/serializer": "6.3.*",
         "symfony/uid": "6.3.*",
         "symfony/validator": "6.3.*",
-        "symfony/yaml": "6.3.*"
-    },
-    "require-dev": {
+        "symfony/yaml": "6.3.*",
         "symfony/debug-bundle": "6.3.*"
     },
     "config": {

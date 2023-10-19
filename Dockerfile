@@ -8,9 +8,9 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 
 COPY . /var/www/app
-
 RUN chown www-data:www-data /var/www
 
 WORKDIR /var/www/app
 
 RUN composer i --no-dev
+RUN php bin/console cache:clear

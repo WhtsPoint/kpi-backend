@@ -1,6 +1,8 @@
-.nginx
+../.nginx
 var
 vendor
 composer.lock
 docker-compose.yaml
+docker-compose.dev.yaml
 .gitignore
+.mysql

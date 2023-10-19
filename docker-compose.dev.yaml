@@ -1,0 +1,27 @@
+services:
+  database:
+    container_name: database
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - 3306:3306
+    volumes:
+      - ./.mysql/data:/var/lib/mysql
+    networks:
+      - app
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: database
+    networks:
+      - app
+    depends_on:
+      - database
+networks:
+  app:
+    driver: bridge

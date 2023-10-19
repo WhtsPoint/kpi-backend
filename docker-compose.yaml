@@ -1,56 +1,34 @@
 services:
   nginx:
-    build: ./.nginx
+    build: .nginx
     restart: always
-    profiles:
-      - prod
     environment:
       - APP_ENV=prod
     volumes:
       - .:/var/www/app
     ports:
       - 80:80
-    depends_on:
-      - php
     networks:
       - app
   php:
     build: .
-    restart: always
-    profiles:
-      - prod
     environment:
       - APP_ENV=prod
+      - DATABASE_URL=mysql://root:root@database:3306/app?serverVersion=8.0.32&charset=utf8mb4
+    depends_on:
+      - database
     networks:
       - app
   database:
     container_name: database
     image: mysql
     restart: always
-    profiles:
-      - prod
-      - dev
     environment:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
       - ./.mysql/data:/var/lib/mysql
     networks:
       - app
-    depends_on:
-      - php
-  phpmyadmin:
-    image: phpmyadmin
-    restart: always
-    profiles:
-      - dev
-    ports:
-      - 8080:80
-    environment:
-      PMA_HOST: database
-    networks:
-      - app
-    depends_on:
-      - database
 networks:
   app:
     driver: bridge

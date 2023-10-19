@@ -6,9 +6,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
+
+COPY . /var/www/app
+
 RUN chown www-data:www-data /var/www
-COPY --chown=www-data:www-data ./ /var/www/app
 
 WORKDIR /var/www/app
 
-RUN composer i --no-dev --no-interaction --no-progress --no-scripts --optimize-autoloader
+RUN composer i --no-dev

@@ -34,10 +34,14 @@ symfony server:start
 ### Migrations
 To sync your database with mapping information you must make migrations
 ```shell
-php bin/console doctrine:database:create  
-php bin/console doctrine:migrations:diff
 php bin/console doctrine:migrations:migrate 
 ```
+
+Or when you have no database
+```shell
+php bin/console doctrine:database:create 
+```
+
 ## Build
 - Build app with docker:
 ```shell

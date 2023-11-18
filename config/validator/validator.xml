@@ -39,4 +39,36 @@
             </constraint>
         </property>
     </class>
+
+    <class name="App\Dto\AccountCreationDto">
+        <property name="amount">
+            <constraint name="NotNull">
+                <option name="message">Amount must be not null</option>
+            </constraint>
+            <constraint name="PositiveOrZero">
+                <option name="message">Amount must be positive</option>
+            </constraint>
+        </property>
+        <property name="userId">
+            <constraint name="NotBlank">
+                <option name="message">User id must be not empty</option>
+            </constraint>
+        </property>
+    </class>
+
+    <class name="App\Dto\TopUpAccountDto">
+        <property name="amount">
+            <constraint name="NotNull">
+                <option name="message">Amount must be not null</option>
+            </constraint>
+            <constraint name="PositiveOrZero">
+                <option name="message">Amount must be positive</option>
+            </constraint>
+        </property>
+        <property name="accountId">
+            <constraint name="NotBlank">
+                <option name="message">Account with this id</option>
+            </constraint>
+        </property>
+    </class>
 </constraint-mapping>

@@ -7,6 +7,8 @@ use App\Exception\AccountNotFoundException;
 use App\Interface\AccountRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query;
 
 class AccountRepository implements AccountRepositoryInterface
@@ -53,5 +55,25 @@ class AccountRepository implements AccountRepositoryInterface
         $count = $query->getSingleScalarResult();
 
         return $count > 0;
+    }
+
+    /**
+     * @throws AccountNotFoundException
+     * @throws NonUniqueResultException
+     */
+    public function getByUserId(string $userId): Account
+    {
+        $query = $this->entityManager->createQuery(
+            'SELECT a FROM App\Entity\Account a JOIN a.user u WHERE u.id = :userId'
+        );
+        $query->setParameter('userId', $userId);
+
+        try {
+            /** @var Account $account */
+            $account = $query->getSingleResult();
+        } catch (NoResultException) {
+            throw new AccountNotFoundException();
+        }
+        return $account;
     }
 }

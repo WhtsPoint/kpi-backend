@@ -12,6 +12,11 @@ interface AccountRepositoryInterface
      * @throws AccountNotFoundException
      */
     public function getById(string $id): Account;
+
+    /**
+     * @throws AccountNotFoundException
+     */
+    public function getByUserId(string $userId): Account;
     public function isExistsWithUser(string $userId): bool;
     public function delete(Account $account): void;
 

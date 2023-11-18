@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\Dto\RecordCreationDto;
 use App\Dto\RecordSearchParamsDto;
+use App\Exception\AccountNotFoundException;
 use App\Exception\CategoryNotFoundException;
 use App\Exception\CategoryNotFoundHttpException;
+use App\Exception\LackOfAmountException;
+use App\Exception\LackOfAmountHttpException;
+use App\Exception\NoUserAccountHttpException;
 use App\Exception\RecordNotFoundException;
 use App\Exception\RecordNotFoundHttpException;
 use App\Exception\UserNotFoundException;
@@ -35,6 +39,10 @@ class RecordController extends AbstractController
             throw new UserNotFoundHttpException();
         } catch (CategoryNotFoundException) {
             throw new CategoryNotFoundHttpException();
+        } catch (AccountNotFoundException) {
+            throw new NoUserAccountHttpException();
+        } catch (LackOfAmountException) {
+            throw new LackOfAmountHttpException();
         }
 
         return $this->json($response);

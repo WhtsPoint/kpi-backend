@@ -18,7 +18,6 @@ interface UserRepositoryInterface
      * @throws UserNotFoundException
      */
     public function getById(string $id): User;
-
     /**
      * @return array<User>
      */

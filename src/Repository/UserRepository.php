@@ -24,17 +24,9 @@ class UserRepository implements UserRepositoryInterface
         $this->entityManager->persist($user);
     }
 
-    /**
-     * @throws UserNotFoundException
-     */
-    public function delete(string $id): void
+    public function deleteByEntity(User $user): void
     {
-        $this->isExistsOrException($id);
-
-        $query = $this->entityManager->createQuery(
-            'DELETE FROM App\Entity\User u WHERE u.id = :id'
-        );
-        $query->execute(['id' => $id]);
+        $this->entityManager->remove($user);
     }
 
     /**

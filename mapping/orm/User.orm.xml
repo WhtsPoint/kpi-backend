@@ -2,5 +2,11 @@
     <entity name="App\Entity\User">
         <field name="name" />
         <id name="id" type="uuid" column="id" />
+        <one-to-one field="account" target-entity="Account">
+<!--            <join-column name="account_id" on-delete="CASCADE" />-->
+            <cascade>
+                <cascade-remove />
+            </cascade>
+        </one-to-one>
     </entity>
 </doctrine-mapping>

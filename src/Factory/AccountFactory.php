@@ -18,7 +18,7 @@ class AccountFactory implements AccountFactoryInterface
         $bill = new Bill($amount);
         $account = new Account($bill);
 
-        $account->setUser($user);
+        $user->setAccount($account);
 
         return $account;
     }

@@ -49,12 +49,12 @@ class AccountRepository implements AccountRepositoryInterface
     public function isExistsWithUser(string $userId): bool
     {
         $query = $this->entityManager->createQuery(
-            'SELECT COUNT(a.id) as count FROM App\Entity\Account a JOIN a.user u WHERE u.id = :userId'
+            'SELECT COUNT(u.id) FROM App\Entity\User u JOIN u.account a WHERE u.id = :userId AND a IS NOT NULL'
         );
         $query->setParameter('userId', $userId);
         $count = $query->getSingleScalarResult();
 
-        return $count > 0;
+        return $count !== 0;
     }
 
     /**

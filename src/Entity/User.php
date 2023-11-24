@@ -7,6 +7,7 @@ use App\ValueObject\Uuid;
 class User
 {
     private Uuid $id;
+    private ?Account $account = null;
 
     public function __construct(
         private string $name
@@ -27,5 +28,15 @@ class User
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getAccount(): ?Account
+    {
+        return $this->account;
+    }
+
+    public function setAccount(Account $account): void
+    {
+        $this->account = $account;
     }
 }

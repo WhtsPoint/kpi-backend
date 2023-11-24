@@ -9,7 +9,6 @@ use App\ValueObject\Uuid;
 class Account
 {
     private Uuid $id;
-    private ?User $user = null;
     private Bill $bill;
 
     public function __construct(Bill $bill)
@@ -21,16 +20,6 @@ class Account
     public function getId(): Uuid
     {
         return $this->id;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user): void
-    {
-        $this->user = $user;
     }
 
     public function getBill(): Bill

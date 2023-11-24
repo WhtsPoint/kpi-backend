@@ -45,7 +45,7 @@ class UserController extends AbstractController
     public function delete(string $id): JsonResponse
     {
         try {
-            $this->repository->delete($id);
+            $this->service->deleteById($id);
         } catch (UserNotFoundException) {
             throw new UserNotFoundHttpException();
         }

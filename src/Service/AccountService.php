@@ -44,7 +44,7 @@ class AccountService implements AccountServiceInterface
         $this->repository->create($account);
         $this->flusher->flush();
 
-        return new AccountCreationResultDto($user->getId());
+        return new AccountCreationResultDto($account->getId());
     }
 
     /**

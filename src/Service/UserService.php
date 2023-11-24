@@ -4,7 +4,6 @@ namespace App\Service;
 
 use App\Dto\UserCreationDto;
 use App\Dto\UserCreationResultDto;
-use App\Entity\User;
 use App\Exception\UserNotFoundException;
 use App\Interface\FlusherInterface;
 use App\Interface\UserFactoryInterface;
@@ -27,5 +26,16 @@ class UserService implements UserServiceInterface
         $this->flusher->flush();
 
         return new UserCreationResultDto($user->getId());
+    }
+
+    /**
+     * @throws UserNotFoundException
+     */
+    public function deleteById(string $id): void
+    {
+        $user = $this->repository->getById($id);
+
+        $this->repository->deleteByEntity($user);
+        $this->flusher->flush();
     }
 }

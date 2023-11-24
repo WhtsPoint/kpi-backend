@@ -10,6 +10,7 @@ class Account
 {
     private Uuid $id;
     private Bill $bill;
+    private ?User $user = null;
 
     public function __construct(Bill $bill)
     {
@@ -34,5 +35,15 @@ class Account
     {
         $newBill = $this->bill->add($amount);
         $this->bill = $newBill;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 }

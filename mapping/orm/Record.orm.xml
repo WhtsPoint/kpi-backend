@@ -3,7 +3,11 @@
         <field name="amountSpent" type="integer" />
         <field name="createdAt" type="time_immutable" />
         <id name="id" type="uuid" column="id" />
-        <many-to-one field="user" target-entity="User" />
-        <many-to-one field="category" target-entity="Category" />
+        <many-to-one field="user" target-entity="User">
+            <join-column on-delete="SET NULL" />
+        </many-to-one>
+        <many-to-one field="category" target-entity="Category">
+            <join-column on-delete="SET NULL" />
+        </many-to-one>
     </entity>
 </doctrine-mapping>

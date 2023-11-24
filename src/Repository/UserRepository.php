@@ -26,6 +26,12 @@ class UserRepository implements UserRepositoryInterface
 
     public function deleteByEntity(User $user): void
     {
+        $account = $user->getAccount();
+
+        if ($account !== null) {
+            $this->entityManager->remove($account);
+        }
+
         $this->entityManager->remove($user);
     }
 

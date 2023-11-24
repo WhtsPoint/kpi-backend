@@ -56,24 +56,4 @@ class AccountRepository implements AccountRepositoryInterface
 
         return $count !== 0;
     }
-
-    /**
-     * @throws AccountNotFoundException
-     * @throws NonUniqueResultException
-     */
-    public function getByUserId(string $userId): Account
-    {
-        $query = $this->entityManager->createQuery(
-            'SELECT a FROM App\Entity\Account a JOIN a.user u WHERE u.id = :userId'
-        );
-        $query->setParameter('userId', $userId);
-
-        try {
-            /** @var Account $account */
-            $account = $query->getSingleResult();
-        } catch (NoResultException) {
-            throw new AccountNotFoundException();
-        }
-        return $account;
-    }
 }

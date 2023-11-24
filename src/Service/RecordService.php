@@ -41,7 +41,11 @@ class RecordService implements RecordServiceInterface
         $user = $this->userRepository->getById($dto->userId);
         $category = $this->categoryRepository->getById($dto->categoryId);
         $record = $this->factory->create($dto->amountSpent);
-        $account = $this->accountRepository->getByUserId($dto->userId);
+        $account = $user->getAccount();
+
+        if ($account === null) {
+            throw new AccountNotFoundException();
+        }
 
         $record->setUser($user);
         $record->setCategory($category);

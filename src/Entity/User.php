@@ -37,6 +37,7 @@ class User
 
     public function setAccount(Account $account): void
     {
+        $account->setUser($this);
         $this->account = $account;
     }
 }

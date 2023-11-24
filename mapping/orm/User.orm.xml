@@ -2,9 +2,9 @@
     <entity name="App\Entity\User">
         <field name="name" />
         <id name="id" type="uuid" column="id" />
-        <one-to-one field="account" target-entity="Account">
-<!--            <join-column name="account_id" on-delete="CASCADE" />-->
+        <one-to-one field="account" mapped-by="user" target-entity="Account" orphan-removal="true">
             <cascade>
+                <cascade-persist />
                 <cascade-remove />
             </cascade>
         </one-to-one>

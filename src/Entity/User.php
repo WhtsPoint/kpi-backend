@@ -2,17 +2,24 @@
 
 namespace App\Entity;
 
+use App\Dto\HashPasswordDto;
 use App\ValueObject\Uuid;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     private Uuid $id;
     private ?Account $account = null;
+    private string $password;
 
     public function __construct(
-        private string $name
+        private string $name,
+        private readonly string $login,
+        HashPasswordDto $hashPasswordDto
     ) {
         $this->id = Uuid::create();
+        $this->setPassword($hashPasswordDto);
     }
 
     public function getId(): Uuid
@@ -39,5 +46,34 @@ class User
     {
         $account->setUser($this);
         $this->account = $account;
+    }
+
+    public function getLogin(): string
+    {
+        return $this->login;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(HashPasswordDto $dto): void {
+        $this->password = $dto->hasher->hash($dto->password);
+    }
+
+    public function getRoles(): array
+    {
+        return ['USER'];
+    }
+
+    public function eraseCredentials()
+    {
+        return null;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->login;
     }
 }

@@ -30,7 +30,7 @@ composer install --dev
 docker compose -f docker-compose.dev.yaml up
 ```
 - [Make migrations](#migrations)
-
+- [Generate SSL keys](#ssl-keys)
 - Start debug server:
 
 ```shell
@@ -43,6 +43,7 @@ symfony server:start
 docker compose up
 ```
 - [Make migrations](#migrations)
+- [Generate SSL keys](#ssl-keys)
 
 Server will be able on :80 port
 
@@ -55,4 +56,9 @@ php bin/console doctrine:migrations:migrate
 Or when you have no database
 ```shell
 php bin/console doctrine:database:create 
+```
+### SSL Keys
+You need to generate keys for jwt auth
+```shell
+php bin/console lexik:jwt:generate-keypair
 ```

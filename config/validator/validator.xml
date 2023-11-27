@@ -30,6 +30,24 @@
                 <option name="message">Name is blank</option>
             </constraint>
         </property>
+        <property name="login">
+            <constraint name="NotBlank">
+                <option name="message">Login is blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">100</option>
+                <option name="maxMessage">Password length must be less than {{ limit }} symbols</option>
+            </constraint>
+        </property>
+        <property name="password">
+            <constraint name="NotBlank">
+                <option name="message">Password is blank</option>
+            </constraint>
+            <constraint name="Length">
+                <option name="max">100</option>
+                    <option name="maxMessage">Password length must be less than {{ limit }} symbols</option>
+            </constraint>
+        </property>
     </class>
 
     <class name="App\Dto\CategoryCreationDto">

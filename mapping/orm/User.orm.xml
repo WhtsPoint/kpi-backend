@@ -1,7 +1,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
     <entity name="App\Entity\User">
         <field name="name" />
-        <field name="login" />
+        <field name="login" unique="true"/>
         <field name="password" />
         <id name="id" type="uuid" column="id" />
         <one-to-one field="account" mapped-by="user" target-entity="Account" orphan-removal="true">

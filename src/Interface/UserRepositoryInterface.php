@@ -17,4 +17,5 @@ interface UserRepositoryInterface
      */
     public function getAll(): array;
     public function deleteByEntity(User $user): void;
+    public function isExistsWithLogin(string $login): bool;
 }

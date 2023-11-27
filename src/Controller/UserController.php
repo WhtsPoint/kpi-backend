@@ -5,11 +5,12 @@ namespace App\Controller;
 use App\Dto\UserCreationDto;
 use App\Exception\UserNotFoundException;
 use App\Exception\UserNotFoundHttpException;
+use App\Exception\UserWithThisLoginExistsException;
+use App\Exception\UserWithThisLoginExistsHttpException;
 use App\Interface\UserRepositoryInterface;
 use App\Interface\UserServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -24,8 +25,11 @@ class UserController extends AbstractController
     public function create(
         #[MapRequestPayload] UserCreationDto $dto
     ): JsonResponse {
-        $response = $this->service->create($dto);
-
+        try {
+            $response = $this->service->create($dto);
+        } catch (UserWithThisLoginExistsException) {
+            throw new UserWithThisLoginExistsHttpException();
+        }
         return $this->json($response);
     }
 

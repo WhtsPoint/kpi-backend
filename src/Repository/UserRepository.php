@@ -63,4 +63,9 @@ class UserRepository implements UserRepositoryInterface
             throw new UserNotFoundException();
         }
     }
+
+    public function isExistsWithLogin(string $login): bool
+    {
+        return $this->repository->count(['login' => $login]) !== 0;
+    }
 }

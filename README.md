@@ -6,7 +6,7 @@
 
 ### Deployment
 
-http://185.229.224.230:4444
+http://194.183.165.223:4444
 
 ### Postman Workspace
 
